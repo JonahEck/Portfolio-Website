@@ -1,0 +1,51 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout Class="d-flex flex-column page-main-background">
+    <MudAppBar Elevation="0" Class="white-text px-sm-0 px-md-4" Color="Color.Dark">
+        <MudLink Href="/" Underline="Underline.None">
+            <MudText Typo="Typo.h4" Class="white-text">
+                Jonah Eck
+            </MudText>
+        </MudLink>
+        <MudSpacer />
+        <MudButton Href="/">
+            <MudText Typo="Typo.body1" Class="white-text">Home</MudText>
+        </MudButton>
+        <MudButton Href="/About Me">
+            <MudText Typo="Typo.body1" Class="white-text">About Me</MudText>
+        </MudButton>
+        <MudButton Href="/Projects">
+            <MudText Typo="Typo.body1" Class="white-text">Projects</MudText>
+        </MudButton>
+        <MudDivider Vertical="true" Class="mx-4 my-4" FlexItem="true" DividerType="DividerType.Middle" />
+        <MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Color="Color.Inherit" Href="https://linkedin.com/in/jonah-eck/" Target="_blank" />
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Href="https://github.com/JonahEck" Target="_blank" />
+    </MudAppBar>
+    <MudMainContent Class="">
+        @Body
+    </MudMainContent>
+    <section class="mud-dark">
+        <MudContainer Class="white-text">
+            <MudText Typo="Typo.h4">
+                This is a test footer
+            </MudText>
+        </MudContainer>
+    </section>
+
+</MudLayout>
+@code {
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Typography = new Typography()
+            {
+                Default = new Default()
+                {
+                    FontFamily = new[] { "Poppins", "Helvetica", "Arial", "sans-serif" }
+                }
+            }
+        };
+}
