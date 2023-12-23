@@ -26,6 +26,6 @@ jobs:
         dotnet publish -c Release -o PublishedFiles ".\Portfolio Website\Portfolio Website.csproj"
     - name: Deploy to IIS
       run: |
-        iisreset /stop
+        stop-website -name "Portfolio Website"
         Copy-Item ".\PublishedFiles\*" "C:\Websites\Portfolio Website" -Recurse -Force
-        iisreset /start
+        start-website -name "Portfolio Website"
