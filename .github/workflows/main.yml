@@ -1,0 +1,31 @@
+# This is a basic workflow to help you get started with Actions
+
+name: .NET Core Deploy to IIS
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push request event but only for the main branch
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build-and-deploy:
+  
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v3
+          
+    # dotnet build and publish
+    - name: dotnet publish 
+      run: |
+        dotnet publish -c Release -o PortfolioWebsite ".\Portfolio Website\Portfolio Website.csproj"
+    - name: Deploy to IIS
+      run: |
+        iisreset /stop
+        Copy-Item ".\Portfolio Website\*" "C:\Websites\Portfolio Webisite" -Recurse -Force
+        iisreset /start
